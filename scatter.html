@@ -1,12 +1,10 @@
 <meta charset="utf-8">
 
 <head>
-	<script src="../js/d3.js"></script>
+	<script src="js/d3.js"></script>
 
-    <title>D3 Fuck Around</title>
+    <title>Scatter Plot</title>
 
-
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
     <!-- page styline -->
 	<style></style>
@@ -14,7 +12,7 @@
 	<!-- D3.js -->
 	<style>
 		body {
-		  font: 10px sans-serif;
+		  font: 11px sans-serif;
 		}
 
 		.axis path,
@@ -23,13 +21,17 @@
 		  stroke: #000;
 		  shape-rendering: crispEdges;
 		}
+
+		.circle {
+			stroke: white;
+		}
     </style>
 </head>
 
 <body>
 	<!-- D3.js -->
 	<script>
-    var margin = {"left":50,"top":20, "right":20, "bottom":20},
+    var margin = {"left":50,"top":25, "right":25, "bottom":25},
         width = 960,
         height = 500;
 
@@ -44,7 +46,15 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top +")");
 
-    d3.csv("../data/cars.csv", function(data){
+	svg.append("text")
+	  .attr("x", (width / 2))
+	  .attr("y", 0 - (margin.top / 2))
+	  .attr("text-anchor", "middle")
+	  .style("font-size", "15px")
+	  .style("text-decoration", "underline")
+	  .text("Car's Performance vs Economy");
+
+    d3.csv("data/cars.csv", function(data){
 
 		data.forEach(function(d) {
             d["0-60 mph (s)"] = +d["0-60 mph (s)"];
@@ -83,7 +93,9 @@
 				.text("Economy (mpg)");
 
 		var cars = svg.selectAll(".car")
-			.data(data)
+			.data(data.filter(function(d) {
+				return (d["power (hp)"]) && (d["economy (mpg)"])
+			}))
 			.enter()
 			.append("g")
 			.attr("class", "car");

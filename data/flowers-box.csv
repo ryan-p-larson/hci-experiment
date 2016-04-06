@@ -1,0 +1,4 @@
+Species,max,q3,med,q1,min
+setosa,0.6,0.475,0.35,0.225,0.1
+versicolor,1.8,1.6,1.4,1.2,1
+virginica,2.5,2.25,1.95,1.675,1.4

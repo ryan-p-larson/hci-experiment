@@ -1,5 +1,8 @@
 # Research Methods in Human-Computer Interaction Experiment
 This repo contains all of the technical work of a HCI experiment Ben Schroder and I are conducting for class. We are investigating the effect of the [data-ink ratio] on people's chart comprehension and recall. We are conducting the experiment via online, and then saving the data and analyzing it. 
+
+![Example of a minimal chart by the viz god Edward Tufte](https://raw.githubusercontent.com/ryan-p-larson/hci-experiment/master/web/images/cover.png)
+
 ### Chart Types
   - Scatter plot
   - Box & Whisker plot

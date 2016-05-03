@@ -56,16 +56,15 @@ function informedConsentDiv() {
 
 	$('#mainDiv').html(consentDiv);
 	$('#navButton').attr('onclick', 'genDemographicDiv()');
-	$('#navButton').text('genDemographicDiv()');
-
+	$('#navButton').text("I agree, show me the charts.");
 }
 
 function genDemographicDiv() {
-	var demographicDiv = "<form>First name <input type='text' id='firstName'></input><br>Last name <input type='text' id='lastName'></input><br>Age <input type='text' id='age'></input><br><br>Ethnicity <br><input type='radio' name='ethnicity' value='white'>white</input> <br><input type='radio' name='ethnicity' value='hispanic'>hispanic</input> <br><input type='radio' name='ethnicity' value='black'>black</input> <br><input type='radio' name='ethnicity' value='asian'>Asian</input> <br><input type='radio' name='ethnicity' value='other'>Other</input> <br><br>Highest level of education <br><input type='radio' name='education' value='highschool'>Highschool</input> <br><input type='radio' name='education' value='ba'>Bachelor of Arts</input> <br><input type='radio' name='education' value='bs'>Bachelor of Science</input> <br><input type='radio' name='education' value='grad'>Graduate school or higher</input> <br><br>Household composition <br><input type='radio' name='household' value='single'>Single</input> <br><input type='radio' name='household' value='married'>Married</input> <br><input type='radio' name='household' value='divorced'>Divorced</input> <br><input type='radio' name='household' value='separated'>Separated</input> <br><br>Proffesional or Employment Status <br><input type='radio' name='employment' value='student'>Student</input> <br><input type='radio' name='employment' value='part time'>Part Time</input> <br><input type='radio' name='employment' value='full time'>Full Time</input> <br><input type='radio' name='employment' value='unemployed'>Unemployed</input> <br><br>Digital Literacy <br><input type='radio' name='digital' value='1'>1   </input><input type='radio' name='digital' value='2'>2   </input><input type='radio' name='digital' value='3'>3   </input><input type='radio' name='digital' value='4'>4   </input><input type='radio' name='digital' value='5'>5   </input> <br><br>Analytical Literacy <br><input type='radio' name='analytical' value='1'>1   </input><input type='radio' name='analytical' value='2'>2   </input><input type='radio' name='analytical' value='3'>3   </input><input type='radio' name='analytical' value='4'>4   </input><input type='radio' name='analytical' value='5'>5   </input> <br><br>";
+	var demographicDiv = "<h3>Demographics</h3><form>First name <input type='text' id='firstName'></input><br>Last name <input type='text' id='lastName'></input><br>Age <input type='text' id='age'></input><br><br>Ethnicity <br><input type='radio' name='ethnicity' value='white'>white</input> <br><input type='radio' name='ethnicity' value='hispanic'>hispanic</input> <br><input type='radio' name='ethnicity' value='black'>black</input> <br><input type='radio' name='ethnicity' value='asian'>Asian</input> <br><input type='radio' name='ethnicity' value='other'>Other</input> <br><br>Highest level of education <br><input type='radio' name='education' value='highschool'>Highschool</input> <br><input type='radio' name='education' value='ba'>Bachelor of Arts</input> <br><input type='radio' name='education' value='bs'>Bachelor of Science</input> <br><input type='radio' name='education' value='grad'>Graduate school or higher</input> <br><br>Household composition <br><input type='radio' name='household' value='single'>Single</input> <br><input type='radio' name='household' value='married'>Married</input> <br><input type='radio' name='household' value='divorced'>Divorced</input> <br><input type='radio' name='household' value='separated'>Separated</input> <br><br>Proffesional or Employment Status <br><input type='radio' name='employment' value='student'>Student</input> <br><input type='radio' name='employment' value='part time'>Part Time</input> <br><input type='radio' name='employment' value='full time'>Full Time</input> <br><input type='radio' name='employment' value='unemployed'>Unemployed</input> <br><br>Digital Literacy <br><input type='radio' name='digital' value='1'>1   </input><input type='radio' name='digital' value='2'>2   </input><input type='radio' name='digital' value='3'>3   </input><input type='radio' name='digital' value='4'>4   </input><input type='radio' name='digital' value='5'>5   </input> <br><br>Analytical Literacy <br><input type='radio' name='analytical' value='1'>1   </input><input type='radio' name='analytical' value='2'>2   </input><input type='radio' name='analytical' value='3'>3   </input><input type='radio' name='analytical' value='4'>4   </input><input type='radio' name='analytical' value='5'>5   </input> <br><br>";
 
     $('#mainDiv').html(demographicDiv);
     $('#navButton').attr('onclick', "demographicAnswers()");
-    $('#navButton').text('demographicAnswers()');
+    $('#navButton').text('Instructions');
 }
 function demographicAnswers() {
 	//store all of the answers here
@@ -91,14 +90,13 @@ function demographicAnswers() {
 
 	$('#mainDiv').html(instructionsHTML);
 	$('#navButton').attr('onclick', 'instructionsDiv()');
-	$('#navButton').text('instructionsDiv()');
+	$('#navButton').text('Start experiment');
 }
 function instructionsDiv() {
 	//Start up the chart section
-	buttonPushed(flipper);
+	buttonPushed();
 
-	$('#navButton').text('buttonPushed()');
-	//$('#mainDiv').html(genChartDiv(charts[chartNumber]));
+	$('#navButton').text('Answer questions');
 	$('#navButton').attr('onclick', 'buttonPushed()');
 }
 function genChartDiv(counter) {
@@ -109,11 +107,15 @@ function genChartDiv(counter) {
 
     //Change toggle
     flipper = "answer";
+    $('#navButton').text("Submit answers");
 }
 function genAnswerDiv() {
     var answerDiv = "<form id='answerDiv'>What are the defining features?<br><textarea id='Question1' class='question'></textarea> <br><br>What are overall trends? <br><textarea id='Question2' class='question'></textarea><br><br>Given both of these, what does the graph mean? Who or what could this be used for?<br><textarea id='Question3' class='question'></textarea> <br><br></form>"
     //Update For answers
     $('#mainDiv').html(answerDiv);
+
+    //Update the button to submit & next chart
+    $('#navButton').text("Submit answers and go to next chart");
 
     //conditional goes here
     flipper = 'update';
@@ -153,6 +155,9 @@ function recallDiv() {
 
 	//Update the button for function
 	$('#navButton').attr('onclick', 'writeToJSON()');
+
+	//Update button text to indicate you're done
+	$('#navButton').text("Finish");
 }
 
 function final() {

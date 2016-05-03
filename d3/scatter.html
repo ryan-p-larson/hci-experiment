@@ -1,0 +1,114 @@
+<meta charset="utf-8">
+
+<head>
+	<script src="js/d3.js"></script>
+
+    <title>Scatter Plot</title>
+
+
+    <!-- page styline -->
+	<style></style>
+
+	<!-- D3.js -->
+	<style>
+		body {
+		  font: 11px sans-serif;
+		}
+
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
+		.circle {
+			stroke: white;
+		}
+    </style>
+</head>
+
+<body>
+	<!-- D3.js -->
+	<script>
+    var margin = {"left":50,"top":25, "right":25, "bottom":25},
+        width = 960,
+        height = 500;
+
+    var x = d3.scale.linear().range([0, width]),
+        y = d3.scale.linear().range([height, 0]),
+        yAxis = d3.svg.axis().orient("left").scale(y),
+        xAxis = d3.svg.axis().orient("bottom").scale(x);
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top +")");
+
+	svg.append("text")
+	  .attr("x", (width / 2))
+	  .attr("y", 0 - (margin.top / 2))
+	  .attr("text-anchor", "middle")
+	  .style("font-size", "15px")
+	  .style("text-decoration", "underline")
+	  .text("Car's Performance vs Economy");
+
+    d3.csv("data/cars.csv", function(data){
+
+		data.forEach(function(d) {
+            d["0-60 mph (s)"] = +d["0-60 mph (s)"];
+            d.cylinders = +d.cylinders;
+            d["displacement (cc)"] = +d["displacement (cc)"];
+            d["economy (mpg)"] = +d["economy (mpg)"];
+            d["power (hp)"] = +d["power (hp)"];
+            d["weight (lb)"] = +d["weight (lb)"];
+            //Year, decide how to format
+            d.year = +d.year;
+
+            //Discrimate Make and model
+            d.make = d.name.split(" ", 1)[0];
+            d.model = d.name.split(" ")[1];
+        });
+
+		x.domain([0, d3.max(data, function(d) { return d["power (hp)"]; })]);
+		y.domain([0, d3.max(data, function(d) { return d["economy (mpg)"]; })]);
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis)
+				.append("text")
+				.attr("y", 12)
+				.attr("x", 6)
+				.style("text-anchor", "start")
+				.text("Power (HP)");
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis)
+				.append("text")
+				.attr("transform", "rotate(-90)")
+				.attr("y", 12)
+				.style("text-anchor", "end")
+				.text("Economy (mpg)");
+
+		var cars = svg.selectAll(".car")
+			.data(data.filter(function(d) {
+				return (d["power (hp)"]) && (d["economy (mpg)"])
+			}))
+			.enter()
+			.append("g")
+			.attr("class", "car");
+
+		cars.append("circle")
+			.attr("class", function(d) { return "circle + d.name"; })
+			.attr("cx", function(d) { return x(d["power (hp)"]); })
+			.attr("cy", function(d) { return y(d["economy (mpg)"]); })
+			.attr("r", 3)
+			.style("fill", "#333")
+			.append("title")
+				.text(function(d) { return d.name; });
+
+    });
+	</script>
+</body>

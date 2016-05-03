@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Single Page</title>
+	<style type="text/css">
+        .container {
+            margin: auto;
+            width: 960px;
+            align: center;
+        }
+
+        #mainDiv {
+            height: 640px;
+        }
+        #img {
+            max-height: 600px;
+        }
+
+        #answerDiv {
+
+        }
+        .question {
+            width: 80%;
+        }
+
+        #navButton {
+            float: right;
+        }
+	</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="banner"><h2>HCI Experiment</h2></div>
+
+    <div id="mainDiv">
+        <h1>This is an example title</h1>
+    </div>
+
+    <div class="navigation">
+        <button type="button" onclick="genDemographicDiv()" id='navButton'>genDemographicDiv()</button>
+    </div>
+
+
+</div> <!-- End container -->
+<script src="jquery.min.js"></script>
+<script src="pages.js"></script>
+
+<script type="application/javascript">
+    //Globals
+    var charts = [
+            'scatter-two-medium', 'scatter-three-heavy',
+            'box-two-medium', 'box-three-heavy',
+            'bar-two-medium', 'bar-three-heavy'],
+        expLevels = ['minimal', 'medium', 'heavy'],
+        expLevel = expLevels[Math.floor(Math.random() * expLevels.length)],
+        answers = [],
+        demographics = {},
+        flipper = 'chart';
+
+    //Do the ordering
+    ordering(expLevel);
+    //set the number & title AFTER the order is done
+    var chartNumber = 1,
+        chartTitle = charts[chartNumber - 1];
+
+    function buttonPushed() {
+        if (flipper === "chart") {
+            genChartDiv(charts[chartNumber - 1]);
+        } else if (flipper === "answer") {
+            genAnswerDiv();
+        } else if (flipper === 'update') {
+            updateAnswers();
+        } else if (flipper === 'final') {
+            final();
+        }
+    }
+</script>
+
+</body>
+</html>

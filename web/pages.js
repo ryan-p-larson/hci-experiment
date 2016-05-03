@@ -61,7 +61,7 @@ function informedConsentDiv() {
 }
 
 function genDemographicDiv() {
-	var demographicDiv = "<form>First name <input type='text' id='firstName'></input><br><br>Last name <input type='text' id='lastName'></input><br><br>Age <input type='text' id='age'></input><br><br>Ethnicity <br><input type='radio' name='ethnicity' value='white'>white</input> <br><input type='radio' name='ethnicity' value='hispanic'>hispanic</input> <br><input type='radio' name='ethnicity' value='black'>black</input> <br><input type='radio' name='ethnicity' value='asian'>Asian</input> <br><input type='radio' name='ethnicity' value='other'>Other</input> <br><br>Highest level of education <br><input type='radio' name='education' value='highschool'>Highschool</input> <br><input type='radio' name='education' value='ba'>Bachelor of Arts</input> <br><input type='radio' name='education' value='bs'>Bachelor of Science</input> <br><input type='radio' name='education' value='grad'>Graduate school or higher</input> <br><br>Household composition <br><input type='radio' name='household' value='single'>Single</input> <br><input type='radio' name='household' value='married'>Married</input> <br><input type='radio' name='household' value='divorced'>Divorced</input> <br><input type='radio' name='household' value='separated'>Separated</input> <br><br>Proffesional or Employment Status <br><input type='radio' name='employment' value='student'>Student</input> <br><input type='radio' name='employment' value='part time'>Part Time</input> <br><input type='radio' name='employment' value='full time'>Full Time</input> <br><input type='radio' name='employment' value='unemployed'>Unemployed</input> <br><br>Digital Literacy <br><input type='radio' name='digital' value='1'>1   </input><input type='radio' name='digital' value='2'>2   </input><input type='radio' name='digital' value='3'>3   </input><input type='radio' name='digital' value='4'>4   </input><input type='radio' name='digital' value='5'>5   </input> <br><br>Analytical Literacy <br><input type='radio' name='analytical' value='1'>1   </input><input type='radio' name='analytical' value='2'>2   </input><input type='radio' name='analytical' value='3'>3   </input><input type='radio' name='analytical' value='4'>4   </input><input type='radio' name='analytical' value='5'>5   </input> <br><br>";
+	var demographicDiv = "<form>First name <input type='text' id='firstName'></input><br>Last name <input type='text' id='lastName'></input><br>Age <input type='text' id='age'></input><br><br>Ethnicity <br><input type='radio' name='ethnicity' value='white'>white</input> <br><input type='radio' name='ethnicity' value='hispanic'>hispanic</input> <br><input type='radio' name='ethnicity' value='black'>black</input> <br><input type='radio' name='ethnicity' value='asian'>Asian</input> <br><input type='radio' name='ethnicity' value='other'>Other</input> <br><br>Highest level of education <br><input type='radio' name='education' value='highschool'>Highschool</input> <br><input type='radio' name='education' value='ba'>Bachelor of Arts</input> <br><input type='radio' name='education' value='bs'>Bachelor of Science</input> <br><input type='radio' name='education' value='grad'>Graduate school or higher</input> <br><br>Household composition <br><input type='radio' name='household' value='single'>Single</input> <br><input type='radio' name='household' value='married'>Married</input> <br><input type='radio' name='household' value='divorced'>Divorced</input> <br><input type='radio' name='household' value='separated'>Separated</input> <br><br>Proffesional or Employment Status <br><input type='radio' name='employment' value='student'>Student</input> <br><input type='radio' name='employment' value='part time'>Part Time</input> <br><input type='radio' name='employment' value='full time'>Full Time</input> <br><input type='radio' name='employment' value='unemployed'>Unemployed</input> <br><br>Digital Literacy <br><input type='radio' name='digital' value='1'>1   </input><input type='radio' name='digital' value='2'>2   </input><input type='radio' name='digital' value='3'>3   </input><input type='radio' name='digital' value='4'>4   </input><input type='radio' name='digital' value='5'>5   </input> <br><br>Analytical Literacy <br><input type='radio' name='analytical' value='1'>1   </input><input type='radio' name='analytical' value='2'>2   </input><input type='radio' name='analytical' value='3'>3   </input><input type='radio' name='analytical' value='4'>4   </input><input type='radio' name='analytical' value='5'>5   </input> <br><br>";
 
     $('#mainDiv').html(demographicDiv);
     $('#navButton').attr('onclick', "demographicAnswers()");
@@ -94,7 +94,6 @@ function demographicAnswers() {
 	$('#navButton').attr('onclick', 'instructionsDiv()');
 	$('#navButton').text('instructionsDiv()');
 }
-
 function instructionsDiv() {
 	//Start up the chart section
 	buttonPushed(flipper);
@@ -103,7 +102,6 @@ function instructionsDiv() {
 	//$('#mainDiv').html(genChartDiv(charts[chartNumber]));
 	$('#navButton').attr('onclick', 'buttonPushed()');
 }
-
 function genChartDiv(counter) {
 	var chartDiv = "<img width='100%' src='images/%s.jpg'></img>";
 
@@ -113,7 +111,6 @@ function genChartDiv(counter) {
     //Change toggle
     flipper = "answer";
 }
-
 function genAnswerDiv() {
     var answerDiv = "<form id='answerDiv'>What are the defining features?<br><textarea id='Question1' class='question'></textarea> <br><br>What are overall trends? <br><textarea id='Question2' class='question'></textarea><br><br>Given both of these, what does the graph mean? Who or what could this be used for?<br><textarea id='Question3' class='question'></textarea> <br><br></form>"
     //Update For answers
@@ -122,7 +119,6 @@ function genAnswerDiv() {
     //conditional goes here
     flipper = 'update';
 }
-
 function updateAnswers() {
     var orderPresented = chartNumber,
         chart = chartTitle,
@@ -151,8 +147,7 @@ function updateAnswers() {
     buttonPushed();
     return;
 }
-
-function final() {
+function recallDiv() {
 	//Update the div for questions
 	var finalDiv = "<h6>This is a test title</h6><form id='answerDiv'>Recall the scatter plot about Car's efficiency and power. Which car maker had the most models?<br><textarea id='Question1' class='question'></textarea> <br><br>Recall the chart about flower species, how many species were displayed? <br><textarea id='Question2' class='question'></textarea><br><br>Which state had the most assaults?<br><textarea id='Question3' class='question'></textarea> <br><br></form>";
 	$('#mainDiv').html(finalDiv);
@@ -161,12 +156,11 @@ function final() {
 	$('#navButton').attr('onclick', 'writeToJSON()');
 }
 
+function final() {
+	
+}
+
 function writeToJSON() {
 	console.log("done!");
 
-}
-
-// Returns an int between two numbers
-function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
 }

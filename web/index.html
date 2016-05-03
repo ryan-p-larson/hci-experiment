@@ -8,6 +8,9 @@
 		body {
 			font-family: 'Open Sans', sans-serif;
 		}
+		p {
+			font-size: 20px;
+		}
 
 		button {
 		  display: inline-block;
@@ -20,7 +23,6 @@
 		  border-radius: 0;
 		  color: #ddd;
 		  background-color: #333;
-		  text-shadow: -1px 1px #666;
 		  border: none;
 		}
 
@@ -33,12 +35,17 @@
 
         .container {
             margin: auto;
+			padding: 10px 25px 0px 25px;
             width: 960px;
             align: center;
+			background-color: #ddd;
         }
 
         #mainDiv {
             height: 640px;
+			background-color: #fff;
+			padding: 10px;
+			overflow: auto;
         }
 
 		#title {
@@ -48,13 +55,12 @@
             max-height: 600px;
         }
 
-        #answerDiv {
-
-        }
         .question {
             width: 80%;
         }
-
+		.navigation {
+			height: 60px;
+		}
         #navButton {
             float: right;
         }
@@ -70,11 +76,15 @@
     <div id="mainDiv">
 		<br>
         <h1 id="title">A Little Goes a Long Way. <br> The Effects of Chart Minimization on Memorability of Charts</h1>
-		<h5>Benjamin Schroder<br>Ryan Larson</h5>
+		<p>Benjamin Schroder<br>Ryan Larson</p>
+
+		<!--<img src="images/cover.png" float="right" height="75%"></img>-->
     </div>
 
     <div class="navigation">
+		<div>
         <button type="button" onclick="informedConsentDiv()" id='navButton'>informedConsentDiv()</button>
+	</div>
     </div>
 
 
@@ -91,7 +101,7 @@
         expLevels = ['minimal', 'medium', 'heavy'],
         expLevel = expLevels[Math.floor(Math.random() * expLevels.length)],
         answers = [],
-        demographics = {},
+        demographics = [],
         flipper = 'chart';
 
     //Do the ordering

@@ -80,15 +80,14 @@ function demographicAnswers() {
 		analytical = $("input[name = 'analytical']:checked").val();
 
 	//Add the demographics in
-	demographics["first name"] = firstName;
-	demographics["last name"] = lastName
-	demographics["age"] = age;
-	demographics["ethnicity"] = ethnicity;
-	demographics["education"] = education;
-	demographics["household"] = household;
-	demographics["employment"] = employment;
-	demographics["digital"] = digital;
-	demographics["analytical"] = analytical;
+	demographics.push({"first name": firstName});
+	demographics.push({"last name": lastName});
+	demographics.push({"age": age});
+	demographics.push({"ethnicity": ethnicity});
+	demographics.push({"education": education});
+	demographics.push({"employment": employment});
+	demographics.push({"digital": digital});
+	demographics.push({"analytical": analytical});
 
 	$('#mainDiv').html(instructionsHTML);
 	$('#navButton').attr('onclick', 'instructionsDiv()');
@@ -149,7 +148,7 @@ function updateAnswers() {
 }
 function recallDiv() {
 	//Update the div for questions
-	var finalDiv = "<h6>This is a test title</h6><form id='answerDiv'>Recall the scatter plot about Car's efficiency and power. Which car maker had the most models?<br><textarea id='Question1' class='question'></textarea> <br><br>Recall the chart about flower species, how many species were displayed? <br><textarea id='Question2' class='question'></textarea><br><br>Which state had the most assaults?<br><textarea id='Question3' class='question'></textarea> <br><br></form>";
+	var finalDiv = "<h3>Recall</h3><form id='answerDiv'>Recall the scatter plot about Car's efficiency and power. Which car maker had the most models?<br><textarea id='Question1' class='question'></textarea> <br><br>Recall the box and whisker plot about flower species, how many species were displayed? <br><textarea id='Question2' class='question'></textarea><br><br>Recall one of the bar charts you saw (TITLE HERE). Which state had the most assaults?<br><textarea id='Question3' class='question'></textarea> <br><br></form>";
 	$('#mainDiv').html(finalDiv);
 
 	//Update the button for function
@@ -157,10 +156,12 @@ function recallDiv() {
 }
 
 function final() {
-	
 }
 
 function writeToJSON() {
-	console.log("done!");
+	var json = {'demographics':demographics, 'answers':answers};
+	json = JSON.stringify(json);
 
+	//Send it off!
+	//$.post("https://openws.herokuapp.com/hciExperiment?apiKey=API_KEY_HERE", json).done(function(data) { console.log("Product saved successfully");});
 }

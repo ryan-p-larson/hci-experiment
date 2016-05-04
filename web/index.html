@@ -25,7 +25,20 @@
 		  border: none;
 		}
 
+		button:hover,
+		button.hover {
+		  background-color: #37474F;
+		  text-shadow: -1px 1px #27496d;
+		}
+
+		button:active,
+		button.active {
+		  background-color: #27496d;
+		  text-shadow: -1px 1px #193047;
+		}
+
         .container {
+			height: 100%;
             margin: auto;
 			padding: 10px 25px 10px 25px;
             width: 960px;
@@ -45,8 +58,15 @@
 			overflow: auto;
         }
 
-		#title {
+		.title {
+			margin-left: 10%;
+		}
+		.title h1{
 			font-size: 48px;
+			font-weight: 700;
+		}
+		#informedConsent p {
+			margin-top: 0px;
 		}
         #img {
             max-height: 600px;
@@ -73,8 +93,8 @@
 
     <div id="mainDiv">
 		<br>
-        <h1 id="title">A Little Goes a Long Way. <br> The Effects of Chart Minimization on Memorability of Charts</h1>
-		<p>Benjamin Schroder<br>Ryan Larson</p>
+        <h1 class="title">A Little Goes a Long Way. <br> The Effects of Chart Minimization on Memorability of Charts</h1>
+		<p class="title">Benjamin Schroder<br>Ryan Larson</p>
 
 		<!--<img src="images/cover.png" float="right" height="75%"></img>-->
     </div>
